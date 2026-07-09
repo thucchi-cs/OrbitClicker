@@ -1,3 +1,32 @@
 body {
-    background-color: purple;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#disk {
+    background-color: rgb(226, 46, 14);
+    border-color: black;
+    border-style: solid;
+    border-width: 5px;
+    height: 75vh;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#needle {
+    /* background-color: white; */
+    border-radius: 50%;
+    transform: rotate(0deg)
+}
+
+@media (max-width:1000px) {
+    #disk {
+        width: 80vw;
+        height: auto;
+    }
 }

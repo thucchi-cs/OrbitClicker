@@ -6,7 +6,7 @@ body {
 }
 
 #disk {
-    background-color: rgb(226, 46, 14);
+    background-color: rgb(14, 124, 226);
     border-color: black;
     border-style: solid;
     border-width: 5px;
@@ -16,12 +16,26 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    margin:auto;
+    inset: 0;
 }
 
 #needle {
-    /* background-color: white; */
     border-radius: 50%;
-    transform: rotate(0deg)
+    transform: rotate(90deg);
+    position: absolute;
+    inset: 0;
+    margin: auto;
+}
+
+#star {
+    position: absolute;
+    /* margin: auto; */
+    /* background-color: green; */
+    /* scale: 0.3; */
+    left: 314px;
+    /* top: 0; */
 }
 
 @media (max-width:1000px) {

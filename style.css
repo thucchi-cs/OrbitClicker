@@ -31,11 +31,7 @@ body {
 
 #star {
     position: absolute;
-    /* margin: auto; */
-    /* background-color: green; */
-    /* scale: 0.3; */
     left: 314px;
-    /* top: 0; */
 }
 
 @media (max-width:1000px) {

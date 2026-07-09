@@ -26,24 +26,25 @@ const changeSpeed = (timeout) => {
 const getRandomStarAngle = () => {
     let angle = starSetAngle;
     while (Math.abs(starSetAngle-angle) < 45) {
-        angle = Math.floor(Math.random() * (0 - 360 + 1) + 360);
+        angle = Math.floor(Math.random() * ((starSetAngle-180) - (starSetAngle+180) + 1) + (starSetAngle+180));
     }
-    return angle
+    angle = (angle<0) ? 360+angle: angle;
+    return angle % 360;
 }
 
 const spawnStar = () => {
     // starSetAngle = Math.floor(Math.random() * (0 - 360 + 1) + 360);
     starSetAngle = getRandomStarAngle();
-    // starSetAngle = 90;
+    // starSetAngle = 35;
     console.log(starSetAngle);
     let x = Math.round((diskRadius - starRadius) * Math.cos(toRadians(starSetAngle)));
     let y = Math.round((diskRadius - starRadius) * Math.sin(toRadians(starSetAngle)));
     console.log(`x: ${x}`)
-    console.log(`y: ${y}`)
-    x = (x<0)? x+60: (x==0) ? x: x-60;
-    y = (y<0)? y+60: (y==0) ? y: y-60;
-    star.style.left = `${314+y}px`;
-    star.style.top = `${314+x}px`;
+    console.log(`y: ${diskRadius-5+y}`)
+    x = (x<0)? x+(starRadius*2): (x==0) ? x: x-(starRadius*2);
+    y = (y<0)? y+(starRadius*2): (y==0) ? y: y-(starRadius*2);
+    star.style.left = `${(diskRadius-starRadius)-5+y}px`;
+    star.style.top = `${(diskRadius-starRadius)-5+x}px`;
 
     starAngle = (360 - (starSetAngle - 180)) % 360;
     console.log(`star: ${starAngle}`);

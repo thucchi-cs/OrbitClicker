@@ -43,7 +43,6 @@ const changeSpeed = (timeout) => {
             if (angleSpeed > 0) {
                 if ((Math.abs(starAngle-angle) < 20) && (angle > (starAngle + 10))) {
                     play = false;
-                    console.log("boooo");
                     lose = true;
                     changeColor('red');
                     setTimeout(() => {changeColor(bgColor)}, 300); 
@@ -51,7 +50,6 @@ const changeSpeed = (timeout) => {
             } else {
                 if ((Math.abs(starAngle-angle) < 20) && (angle < (starAngle - 10))) {
                     play = false;
-                    console.log("boooo2");
                     lose = true;
                     changeColor('red');
                     setTimeout(() => {changeColor(bgColor)}, 300); 
@@ -59,7 +57,6 @@ const changeSpeed = (timeout) => {
                 if (starAngle === 0) {
                     if ((angle > 340) && (angle < 350)) {
                         play = false;
-                        console.log("boooo2");
                         lose = true;
                         changeColor('red');
                         setTimeout(() => {changeColor(bgColor)}, 300); 
@@ -81,24 +78,16 @@ const spawnStar = () => {
     } else {
         goodAngles.splice(starSetIndex-1,3);
     }
-    // console.log(`angle: ${starSetAngle}`)
-    // console.log(`index: ${starSetIndex}`)
-    // console.log(`normal: ${angles}`)
-    // console.log(`good  : ${goodAngles}`)
     starSetAngle = goodAngles[Math.floor(Math.random() * goodAngles.length)];
     starSetIndex = angles.indexOf(starSetAngle);
-    // console.log(starSetAngle);
     let x = Math.round((diskRadius - starRadius) * Math.cos(toRadians(starSetAngle)));
     let y = Math.round((diskRadius - starRadius) * Math.sin(toRadians(starSetAngle)));
-    // console.log(`x: ${x}`)
-    // console.log(`y: ${y}`)
     x = (x<0)? x+(starRadius*2): (x==0) ? x: x-(starRadius*2);
     y = (y<0)? y+(starRadius*2): (y==0) ? y: y-(starRadius*2);
     star.style.left = `${(diskRadius-starRadius)-5+y}px`;
     star.style.top = `${(diskRadius-starRadius)-5+x}px`;
 
     starAngle = starSetIndex * 20;
-    console.log(`starAngle: ${starAngle}`);
 }
 
 spawnStar()
@@ -126,11 +115,8 @@ document.addEventListener('keydown', (event) => {
             scoreDisp.innerHTML = `Score: ${score}`;
         } else {
             angleSpeed *= -1;
-            console.log(`needle: ${angle}`);
-            // console.log(`star: ${starAngle}`);
             if (starAngle > 0) {
                 if (Math.abs(starAngle - angle) <= 10) {
-                    console.log("YAY");
                     spawnStar();
                     score++;
                     if ((score % 5 === 0) && (timeSpeed > 10)) {
@@ -141,13 +127,11 @@ document.addEventListener('keydown', (event) => {
                 } else {
                     play = false;
                     lose = true;
-                    console.log("aw")
                     changeColor('red');
                     setTimeout(() => {changeColor(bgColor)}, 300); 
                 }
             } else {
                 if ((Math.abs(starAngle - angle) <= 10) || Math.abs(360 - angle) <= 10) {
-                   console.log("YAY");
                     spawnStar();
                     score++;
                     if ((score % 5 === 0) && (timeSpeed > 10)) {
@@ -158,7 +142,6 @@ document.addEventListener('keydown', (event) => {
                 } else {
                     play = false;
                     lose = true;
-                    console.log("aw")
                     changeColor('red');
                     setTimeout(() => {changeColor(bgColor)}, 300); 
                 }

@@ -13,7 +13,7 @@ let starSetAngle = 180;
 let starSetIndex = angles.indexOf(starSetAngle);
 let starAngle;
 let angleSpeed = 2;
-let timeSpeed = 30;
+let timeSpeed = 9;
 let angle = 0;
 let play = false;
 let lose = false;
@@ -120,7 +120,7 @@ document.addEventListener('keydown', (event) => {
                     spawnStar();
                     score++;
                     if ((score % 5 === 0) && (timeSpeed > 10)) {
-                        timeSpeed -= 10
+                        timeSpeed -= 7
                         changeSpeed(timeSpeed)
                     }
                     scoreDisp.innerHTML = `Score: ${score}`;
@@ -135,7 +135,7 @@ document.addEventListener('keydown', (event) => {
                     spawnStar();
                     score++;
                     if ((score % 5 === 0) && (timeSpeed > 10)) {
-                        timeSpeed -= 10
+                        timeSpeed -= 7
                         changeSpeed(timeSpeed)
                     }
                     scoreDisp.innerHTML = `Score: ${score}`;

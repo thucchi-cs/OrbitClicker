@@ -35,8 +35,13 @@ function changeColor(color) {
 }
 
 let intervalID;
-const changeSpeed = (timeout) => {
+const changeSpeed = (speed) => {
     clearInterval(intervalID);
+    if (angleSpeed > 0) {
+        angleSpeed++;
+    } else {
+        angleSpeed--;
+    }
     intervalID = setInterval(() => {
         if (play) {
             rotate()
@@ -64,7 +69,7 @@ const changeSpeed = (timeout) => {
                 }
             }
         }
-    }, timeout);
+    }, timeSpeed);
 }
 
 const spawnStar = () => {

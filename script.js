@@ -13,7 +13,7 @@ let starSetAngle = 180;
 let starSetIndex = angles.indexOf(starSetAngle);
 let starAngle;
 let angleSpeed = 2;
-let timeSpeed = 9;
+let timeSpeed = 35;
 let angle = 0;
 let play = false;
 let lose = false;

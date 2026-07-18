@@ -38,9 +38,9 @@ let intervalID;
 const changeSpeed = (speed) => {
     clearInterval(intervalID);
     if (angleSpeed > 0) {
-        angleSpeed++;
+        angleSpeed+=0.25;
     } else {
-        angleSpeed--;
+        angleSpeed-=0.25;
     }
     intervalID = setInterval(() => {
         if (play) {

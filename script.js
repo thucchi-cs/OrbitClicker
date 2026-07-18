@@ -13,7 +13,7 @@ let starSetAngle = 180;
 let starSetIndex = angles.indexOf(starSetAngle);
 let starAngle;
 let angleSpeed = 2;
-let timeSpeed = 40;
+let timeSpeed = 30;
 let angle = 0;
 let play = false;
 let lose = false;
@@ -105,7 +105,7 @@ document.addEventListener('keydown', (event) => {
             starSetIndex = angles.indexOf(starSetAngle);
             starAngle;
             angleSpeed = 2;
-            timeSpeed = 40;
+            timeSpeed = 30;
             angle = 0;
             play = false;
             lose = false;

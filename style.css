@@ -48,7 +48,6 @@ body {
 #directions{
     z-index: 1;
     text-align: center;
-    padding: 30px;
     position: absolute;
     margin: auto;
     background-color: rgb(216, 216, 216);

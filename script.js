@@ -37,11 +37,12 @@ function changeColor(color) {
 let intervalID;
 const changeSpeed = (speed) => {
     clearInterval(intervalID);
-    if (angleSpeed > 0) {
-        angleSpeed+=0.25;
-    } else {
-        angleSpeed-=0.25;
-    }
+    angleSpeed *= 1.1
+    // if (angleSpeed > 0) {
+    //     angleSpeed+=0.25;
+    // } else {
+    //     angleSpeed-=0.25;
+    // }
     intervalID = setInterval(() => {
         if (play) {
             rotate()

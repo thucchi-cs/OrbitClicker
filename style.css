@@ -3,10 +3,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transition: 500ms;
 }
 
 #disk {
-    /* background-color: rgb(14, 124, 226); */
     border-color: black;
     border-style: solid;
     border-width: 5px;
@@ -19,7 +19,6 @@ body {
     position: absolute;
     margin:auto;
     inset: 0;
-    /* background-image: radial-gradient(circle, #3aa0ff 0%, #2f3dbd 100%); */
 }
 
 #needle {
@@ -39,14 +38,32 @@ body {
 #wheel {
     position: absolute;
     width: 100%;
-    /* left: 314px; */
 }
 
 #score {
-    /* background-color: red; */
-    /* width: 100vw; */
     position: absolute;
     bottom: 2vh;
+}
+
+#directions{
+    z-index: 1;
+    font-size: xx-large;
+    text-align: center;
+    padding: 30px;
+    position: absolute;
+    margin: auto;
+    background-color: rgb(216, 216, 216);
+    border-color: black;
+    border-style: solid;
+    border-width: 5px;
+    inset: 0;
+    width: 50vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 500ms;
 }
 
 @media (max-width:1000px) {

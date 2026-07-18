@@ -5,14 +5,18 @@ const toRadians = (degree) => {
 const needle = document.getElementById("needle");
 const diskRadius = Math.round(document.getElementById("disk").offsetHeight / 2);
 const star = document.getElementById("star");
+const scoreDisp = document.getElementById("score");
 const starRadius = Math.round(star.offsetWidth / 2);
 const angles = [180, 153, 139, 125, 110, 71, 56, 42, 27, 0, 333, 318, 304, 289, 250, 235, 221, 206];
 let starSetAngle = 180;
+let starSetIndex = angles.indexOf(starSetAngle);
 let starAngle;
 let angleSpeed = 2;
 let timeSpeed = 35;
 let angle = 0;
-let play = true;
+let play = false;
+let lose = false;
+let score = 0
 
 const rotate = () => {
     angle += angleSpeed;
@@ -26,21 +30,35 @@ const rotate = () => {
 let intervalID;
 const changeSpeed = (timeout) => {
     clearInterval(intervalID);
-    intervalID = setInterval(() => {if (play) {rotate()}}, timeout);
-}
-
-const getRandomStarAngle = () => {
-    let angle = starSetAngle;
-    while (Math.abs(starSetAngle-angle) < 45) {
-        angle = Math.floor(Math.random() * ((starSetAngle-180) - (starSetAngle+180) + 1) + (starSetAngle+180));
-    }
-    angle = (angle<0) ? 360+angle: angle;
-    return angle % 360;
+    intervalID = setInterval(() => {
+        if (play) {
+            rotate()
+            if (angleSpeed > 0) {
+                if ((Math.abs(starAngle-angle) < 20) && (angle > (starAngle + 10))) {
+                    play = false;
+                    console.log("boooo");
+                    lose = true;
+                }
+            } else {
+                if ((Math.abs(starAngle-angle) < 20) && (angle < (starAngle - 10))) {
+                    play = false;
+                    console.log("boooo2");
+                    lose = true;
+                }
+                if (starAngle === 0) {
+                    if ((angle > 340) && (angle < 350)) {
+                        play = false;
+                        console.log("boooo2");
+                        lose = true;
+                    }
+                }
+            }
+        }
+    }, timeout);
 }
 
 const spawnStar = () => {
     let goodAngles = angles.slice(0);
-    let starSetIndex = angles.indexOf(starSetAngle);
     if (starSetIndex === 0) {
         goodAngles.splice(0, 2);
         goodAngles.splice(-1, 1);
@@ -55,6 +73,7 @@ const spawnStar = () => {
     // console.log(`normal: ${angles}`)
     // console.log(`good  : ${goodAngles}`)
     starSetAngle = goodAngles[Math.floor(Math.random() * goodAngles.length)];
+    starSetIndex = angles.indexOf(starSetAngle);
     // console.log(starSetAngle);
     let x = Math.round((diskRadius - starRadius) * Math.cos(toRadians(starSetAngle)));
     let y = Math.round((diskRadius - starRadius) * Math.sin(toRadians(starSetAngle)));
@@ -65,30 +84,46 @@ const spawnStar = () => {
     star.style.left = `${(diskRadius-starRadius)-5+y}px`;
     star.style.top = `${(diskRadius-starRadius)-5+x}px`;
 
-    starAngle = (360 - (starSetAngle - 180)) % 360;
-    // console.log(`starAngle: ${starAngle}`);
+    starAngle = starSetIndex * 20;
+    console.log(`starAngle: ${starAngle}`);
 }
-
-changeSpeed(timeSpeed)
-
-timeSpeed = 20
-setTimeout(() => changeSpeed(timeSpeed), 3000)
 
 spawnStar()
 
 document.addEventListener('keydown', (event) => {
     if ((event.code === 'Space') && (!event.repeat)) {
-        angleSpeed *= -1;
-        // console.log(`needle: ${angle}`);
-        // console.log(`star: ${starAngle}`);
-        if (starAngle >= 8) {
-            // play = false
-            // if (Math.abs(starAngle - angle) <= 8) {
-            //     console.log("YAY");
-            // } else {
-            //     console.log("aw")
-            // }
+        if (!play && !lose) {   
+            play = true
+            changeSpeed(timeSpeed)
+            // timeSpeed = 10
+            // setTimeout(() => changeSpeed(timeSpeed), 3000)
+        } else {
+            angleSpeed *= -1;
+            console.log(`needle: ${angle}`);
+            // console.log(`star: ${starAngle}`);
+            if (starAngle > 0) {
+                if (Math.abs(starAngle - angle) <= 10) {
+                    console.log("YAY");
+                    spawnStar();
+                    score++;
+                    scoreDisp.innerHTML = `Score: ${score}`;
+                } else {
+                    play = false;
+                    lose = true;
+                    console.log("aw")
+                }
+            } else {
+                if ((Math.abs(starAngle - angle) <= 10) || Math.abs(360 - angle) <= 10) {
+                   console.log("YAY");
+                    spawnStar();
+                    score++;
+                    scoreDisp.innerHTML = `Score: ${score}`;
+                } else {
+                    play = false;
+                    lose = true;
+                    console.log("aw")
+                }
+            }
         }
-        spawnStar();
     }
 })

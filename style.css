@@ -47,7 +47,6 @@ body {
 
 #directions{
     z-index: 1;
-    font-size: xx-large;
     text-align: center;
     padding: 30px;
     position: absolute;
@@ -58,12 +57,16 @@ body {
     border-width: 5px;
     inset: 0;
     width: 50vw;
-    height: 70vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     transition: 500ms;
+}
+
+#directions p {
+    font-size: xx-large;
 }
 
 @media (max-width:1000px) {
